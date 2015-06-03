@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Todos</h1>
-
-<h3>Class: table</h3>
+<h4>Class: table</h4>
 <table class="table">
   <thead>
     <tr>
@@ -25,8 +24,8 @@
   </tbody>
 </table>
 
-<h3>Class: table-striped</h3>
-<table class="table-striped">
+<h4>Class: table table-striped</h4>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -48,8 +47,8 @@
   </tbody>
 </table>
 
-<h3>Class: table-bordered</h3>
-<table class="table-bordered">
+<h4>Class: table table-bordered</h4>
+<table class=" table-bordered">
   <thead>
     <tr>
       <th>Title</th>
@@ -72,7 +71,7 @@
 </table>
 
 <h2>Hover rows</h2>
-<h3>Class: table table-hover</h3>
+<h4>Class: table table-hover</h4>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -96,8 +95,36 @@
 </table>
 
 <h2>Condensed table ???</h2>
-<h3>Class: table table-condensed</h3>
-<table class="table table-hover">
+<h4>Class: table table-condensed</h4>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Notes</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @todos.each do |todo| %>
+          <tr>
+            <td><%= todo.title %></td>
+            <td><%= todo.notes %></td>
+            <td><%= link_to 'Show', todo %></td>
+            <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+            <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2>Contextual classes</h2>
+<h4>Classes (left to right): active success warning info danger</h4>
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Title</th>
@@ -109,19 +136,45 @@
   <tbody>
     <% @todos.each do |todo| %>
       <tr>
-        <td><%= todo.title %></td>
-        <td><%= todo.notes %></td>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class = "active"><%= todo.title %></td>
+        <td class = "success"><%= todo.notes %></td>
+        <td class = "warning"><%= link_to 'Show', todo %></td>
+        <td class = "info"><%= link_to 'Edit', edit_todo_path(todo) %></td>
+        <td class = "danger"><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<h1>Buttons<br>
+<h4>Classes (in conjunction with the btn): btn-default btn-primary btn-success btn-info btn-warning btn-danger btn-link</h4>
+<h4>Size classes btn-lg btn-sm btn-xs</h4>
 
-<%= link_to 'New Todo', new_todo_path %>
+<h3>Show: btn btn-primary btn-lg'; Edit: 'btn btn-info btn-sm'; Destroy: 'btn btn-danger btn-xs'</h3>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td class = "active"><%= todo.title %></td>
+        <td class = "success"><%= todo.notes %></td>
+        <td class = "warning"><%= link_to 'Show', todo, class: 'btn btn-primary btn-lg' %></td>
+        <td class = "info"><%= link_to 'Edit', edit_todo_path(todo), class: 'btn btn-info btn-sm' %></td>
+        <td class = "danger"><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Size default class: medium</h4>
+<%= link_to 'New Todo', new_todo_path, class: 'btn btn-success' %>
 
 <br>
 <h2>Nested rows</h2>
